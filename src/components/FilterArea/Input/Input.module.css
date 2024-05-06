@@ -1,0 +1,37 @@
+.flexWrapper {
+  padding: 1.5rem;
+  gap: 1.0625rem;
+}
+
+.text {
+  width: 7.8125rem;
+  text-wrap: wrap;
+  max-inline-size: 140px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.select {
+  width: 285px;
+}
+
+.radioGroup {
+  width: 285px;
+  > label {
+    width: max-content;
+    text-align: center;
+    height: 100%;
+  }
+}
+
+.btn {
+  width: 200px;
+  justify-content: start;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  line-height: 157%;
+  color: #1890ff;
+  outline: none;
+  cursor: pointer;
+}

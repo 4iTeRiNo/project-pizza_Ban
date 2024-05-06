@@ -1,12 +1,14 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {Recipes} from '../types/recipes';
+import {RecipesData} from '../types/recipes';
+import {API_URL} from '../constants';
+import {Error_Server} from '../constants/ErrorMessage';
 
-export const fetchRecipe = createAsyncThunk<Recipes[], undefined, {rejectValue: string}>(
+export const fetchRecipe = createAsyncThunk<RecipesData, undefined, {rejectValue: string}>(
   'recipe/fetchRecipe',
   async function (_, {rejectWithValue}) {
-    const response = await fetch('https://dummyjson.com/recipes');
+    const response = await fetch(API_URL);
     if (!response.ok) {
-      return rejectWithValue('Server Error');
+      return rejectWithValue(Error_Server);
     }
 
     const data = await response.json();

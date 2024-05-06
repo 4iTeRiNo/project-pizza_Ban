@@ -2,6 +2,7 @@ import {useEffect} from 'react';
 import './App.css';
 import {useAppDispatch} from './hooks/dispatchRedux';
 import {fetchRecipe} from './store/thunks';
+import {FilterArea} from './components/FilterArea';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -10,7 +11,7 @@ function App() {
     dispatch(fetchRecipe());
   }, [dispatch]);
 
-  return <></>;
+  return <FilterArea />;
 }
 
 export default App;

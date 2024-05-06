@@ -1,0 +1,19 @@
+.Header {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+
+  .image {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .textWrap {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 129%;
+  }
+}

@@ -1,9 +1,10 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 import {fetchRecipe} from './thunks';
 import {isError} from '../utils/isError';
-import {Recipes} from '../types/recipes';
+import {RecipesData} from '../types/recipes';
+
 export type recipeState = {
-  list: Recipes;
+  list: RecipesData[];
   status: string;
   error: string | null;
 };
@@ -14,10 +15,13 @@ const initialState: recipeState = {
   error: null,
 };
 
-const getRecipeSlice = createSlice({
+const recipeSlice = createSlice({
   name: 'recipeSlice',
   initialState,
   reducers: {},
+  selectors: {
+    selectorRecipe: (state) => state.list.find((el) => el.recipes),
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchRecipe.pending, (state) => {
@@ -25,7 +29,7 @@ const getRecipeSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchRecipe.fulfilled, (state, action) => {
-        state.list = action.payload;
+        state.list = [action.payload];
         state.status = 'succeeded';
       })
       .addMatcher(isError, (state, action: PayloadAction<string>) => {
@@ -35,4 +39,6 @@ const getRecipeSlice = createSlice({
   },
 });
 
-export default getRecipeSlice.reducer;
+export const {selectorRecipe} = recipeSlice.selectors;
+
+export default recipeSlice.reducer;

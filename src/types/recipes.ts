@@ -1,8 +1,17 @@
-export type Recipes = Dish[];
+export type RecipesData = {
+  total: number;
+  skip: number;
+  limit: number;
+  recipes: recipes[];
+};
 
-type Dish = {
+type recipes = {
   id: number;
   name: string;
+  caloriesPerServing: number;
+  cookTimeMinutes: number;
+  cuisine: string;
+  difficulty: string;
   ingredients: Ingredients;
   instructions: Instructions;
   userId: number;
@@ -11,6 +20,8 @@ type Dish = {
   tags: Tags;
   mealType: MealType;
   reviewCount: number;
+  servings: number;
+  prepTimeMinutes: number;
 };
 
 type Ingredients = Array<string>;
