@@ -1,9 +1,9 @@
 import styles from './Header.module.css';
-import cookHeader from '../../../assets/cook_Time2.jpg';
+import cookHeader from '../../../assets/cook_Time.jpg';
+import {Flex} from 'antd';
 
 export const Header = () => (
-  <div className={styles.Header}>
-    {/* <div className={styles.wrapperImg}> */}
+  <Flex className={styles.Header}>
     <img
       className={styles.image}
       width='369px'
@@ -23,5 +23,5 @@ export const Header = () => (
       </span>
       <span>Наш сервис поможет: выбирайте параметры - и вперед!</span>
     </p>
-  </div>
+  </Flex>
 );

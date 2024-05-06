@@ -3,6 +3,9 @@ import './App.css';
 import {useAppDispatch} from './hooks/dispatchRedux';
 import {fetchRecipe} from './store/thunks';
 import {FilterArea} from './components/FilterArea';
+import {ListArea} from './components/ListArea';
+import {Layout} from 'antd';
+const {Header} = Layout;
 
 function App() {
   const dispatch = useAppDispatch();
@@ -11,7 +14,15 @@ function App() {
     dispatch(fetchRecipe());
   }, [dispatch]);
 
-  return <FilterArea />;
+  return (
+    <Layout style={{padding: '1rem', containerType: 'inline-size'}}>
+      <Header className='HeaderText'>Сборник рецептов из разных стран мира</Header>
+      <Layout style={{flexDirection: 'row', gap: '0.75rem', marginTop: '1rem'}}>
+        <FilterArea />
+        <ListArea />
+      </Layout>
+    </Layout>
+  );
 }
 
 export default App;

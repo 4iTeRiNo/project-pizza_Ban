@@ -1,0 +1,17 @@
+.listArea {
+  background-color: #dbdbdbad;
+  border-radius: var(--border-radius);
+
+  .headerText {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: clamp(0.9375rem, 0.8275rem + 0.3521vw, 1.25rem);
+    line-height: 120%;
+    padding-left: 1rem;
+    color: rgba(0, 0, 0, 0.85);
+  }
+  .cardWrapper {
+    padding: 0.75rem;
+    flex-wrap: wrap;
+  }
+}

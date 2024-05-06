@@ -1,7 +1,7 @@
 import {Flex, Radio, Select} from 'antd';
 import {useState} from 'react';
 import {useAppSelector} from '../../../hooks/dispatchRedux';
-import {getAllTreeItems} from '../../../utils/gelAllTreeItem';
+import {getAllTreeItems} from '../../../utils/getAllTreeItem';
 import styles from './Input.module.css';
 
 // interface InputProps {}
@@ -31,6 +31,7 @@ export const Input = () => {
       className={styles.flexWrapper}
     >
       <Flex
+        className={styles.flexWrapper}
         justify='space-between'
         gap='0.5rem'
       >
@@ -44,6 +45,7 @@ export const Input = () => {
         />
       </Flex>
       <Flex
+        className={styles.flexWrapper}
         justify='space-between'
         gap='0.5rem'
       >
@@ -57,6 +59,7 @@ export const Input = () => {
         />
       </Flex>
       <Flex
+        className={styles.flexWrapper}
         justify='space-between'
         gap='0.5rem'
       >

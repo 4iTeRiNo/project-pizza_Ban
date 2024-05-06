@@ -35,3 +35,20 @@
   outline: none;
   cursor: pointer;
 }
+
+@container (max-width:1199px) {
+  .flexWrapper {
+    flex-direction: column;
+    padding: 0.5rem;
+
+    .text {
+      width: 100%;
+      max-inline-size: none;
+      text-align: center;
+    }
+
+    .select {
+      width: 250px;
+    }
+  }
+}

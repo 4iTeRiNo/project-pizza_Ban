@@ -2,10 +2,10 @@ export type RecipesData = {
   total: number;
   skip: number;
   limit: number;
-  recipes: recipes[];
+  recipes: Recipes[];
 };
 
-type recipes = {
+export type Recipes = {
   id: number;
   name: string;
   caloriesPerServing: number;

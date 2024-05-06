@@ -4,7 +4,7 @@
   padding: 1.5rem;
 
   .image {
-    width: 100%;
+    max-width: 100%;
     object-fit: cover;
   }
 
@@ -13,7 +13,13 @@
     flex-direction: column;
     row-gap: 1rem;
     font-weight: 400;
-    font-size: 14px;
+    font-size: clamp(0.75rem, 0.706rem + 0.1408vw, 0.875rem);
     line-height: 129%;
+  }
+}
+
+@container (max-width:1199px) {
+  .Header {
+    padding: 0.5rem;
   }
 }
