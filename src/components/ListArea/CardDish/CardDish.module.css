@@ -2,15 +2,16 @@
   display: flex;
   position: relative;
   flex-direction: row;
-  width: 452px;
+  width: clamp(375px, 24vw, 452px);
+  height: 354px;
   border-radius: var(--border-radius);
   border: 1px solid #fdfbfb;
   transition: transform 0.2s ease-in-out;
-  justify-content: center;
   cursor: pointer;
 
   .image {
-    object-fit: cover;
+    max-width: 100%;
+    object-fit: contain;
   }
 
   .textName {
@@ -24,10 +25,15 @@
     text-wrap: balance;
     font-size: clamp(0.625rem, 0.537rem + 0.2817vw, 0.875rem);
     color: rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
   }
 
   .infoBody {
-    padding: 1.5rem;
+    padding: clamp(4.5%, 5vh, 5.334%);
   }
 }
 

@@ -1,8 +1,11 @@
 .listArea {
+  display: flex;
+  flex-direction: column;
   background-color: #dbdbdbad;
   border-radius: var(--border-radius);
 
   .headerText {
+    flex: 0 0 auto;
     font-family: var(--font-family);
     font-weight: 500;
     font-size: clamp(0.9375rem, 0.8275rem + 0.3521vw, 1.25rem);
@@ -11,7 +14,27 @@
     color: rgba(0, 0, 0, 0.85);
   }
   .cardWrapper {
-    padding: 0.75rem;
+    flex: 1 0 auto;
+    padding: 0.5rem;
     flex-wrap: wrap;
+    justify-content: start;
+  }
+
+  .footer {
+    display: flex;
+    flex: 0 0 auto;
+    height: 56px;
+    background-color: #dbdbdbad;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--border-radius);
+  }
+}
+
+@container (width < 1800px) {
+  .listArea {
+    .cardWrapper {
+      justify-content: center;
+    }
   }
 }

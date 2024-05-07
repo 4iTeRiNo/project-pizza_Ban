@@ -31,7 +31,7 @@ export const Input = () => {
       className={styles.flexWrapper}
     >
       <Flex
-        className={styles.flexWrapper}
+        className={styles.inputWrapper}
         justify='space-between'
         gap='0.5rem'
       >
@@ -45,7 +45,7 @@ export const Input = () => {
         />
       </Flex>
       <Flex
-        className={styles.flexWrapper}
+        className={styles.inputWrapper}
         justify='space-between'
         gap='0.5rem'
       >
@@ -59,7 +59,7 @@ export const Input = () => {
         />
       </Flex>
       <Flex
-        className={styles.flexWrapper}
+        className={styles.inputWrapper}
         justify='space-between'
         gap='0.5rem'
       >

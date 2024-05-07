@@ -1,5 +1,5 @@
 .flexWrapper {
-  padding: 1.5rem;
+  padding: 0 1.5rem 0;
   gap: 1.0625rem;
 }
 
@@ -37,7 +37,7 @@
 }
 
 @container (max-width:1199px) {
-  .flexWrapper {
+  .inputWrapper {
     flex-direction: column;
     padding: 0.5rem;
 

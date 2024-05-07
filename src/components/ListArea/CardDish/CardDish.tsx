@@ -13,10 +13,7 @@ export interface CardDishProps
 export const CardDish = (props: CardDishProps) => {
   return (
     <div className={styles.cardDish}>
-      <Flex
-        vertical
-        gap='1rem'
-      >
+      <Flex vertical>
         <Typography.Title
           className={styles.textName}
           style={{width: '226px', padding: '1.375rem 1.5rem', margin: '0', color: '#000'}}

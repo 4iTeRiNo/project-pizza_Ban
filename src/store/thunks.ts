@@ -1,7 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {RecipesData} from '../types/recipes';
-import {API_URL} from '../constants';
-import {Error_Server} from '../constants/ErrorMessage';
+import {API_URL} from '../constants/api';
+import {Error_Server} from '../constants/errorConstant';
 
 export const fetchRecipe = createAsyncThunk<RecipesData, undefined, {rejectValue: string}>(
   'recipe/fetchRecipe',

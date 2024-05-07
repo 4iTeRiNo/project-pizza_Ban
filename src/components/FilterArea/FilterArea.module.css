@@ -8,7 +8,7 @@
   color: #000;
 }
 
-@container (max-width:1199px) {
+@container (width < 1320px) {
   .filterArea {
     width: 300px;
     padding: 0.5rem;
