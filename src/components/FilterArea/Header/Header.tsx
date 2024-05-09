@@ -3,7 +3,7 @@ import cookHeader from '../../../assets/cook_Time.jpg';
 import {Flex} from 'antd';
 
 export const Header = () => (
-  <Flex className={styles.Header}>
+  <Flex className={styles.header}>
     <img
       className={styles.image}
       width='369px'

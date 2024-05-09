@@ -1,7 +1,8 @@
-.Header {
+.header {
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
+  background-color: var(--background-color);
 
   .image {
     max-width: 100%;

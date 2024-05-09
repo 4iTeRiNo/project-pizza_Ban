@@ -1,21 +1,18 @@
-import {Flex, Pagination, Typography} from 'antd';
-import styles from './ListArea.module.css';
-import {Content, Footer} from 'antd/es/layout/layout';
-import {CardDish} from './CardDish';
 import {useCallback, useState} from 'react';
-import useTable from '../../hooks/UsePage';
-import {Recipes} from '../../types/recipes';
-import useResizeObserver from '../../hooks/UseRize';
+import useResizeObserver from '../../hooks/UseResize';
 import {SCREEN_MD, SCREEN_XL} from '../../constants/screenConstant';
+import {useAppSelector} from '../../hooks/dispatchRedux';
+import {ContentArea} from './Content';
+import {Content} from 'antd/es/layout/layout';
+import styles from './ListArea.module.css';
 
-interface ListAreaProps {
-  allRecipes: Recipes[];
-}
+export const ListArea = () => {
+  const listData = useAppSelector((state) => state.recipeBook.list);
 
-export const ListArea = ({allRecipes}: ListAreaProps) => {
   const [numberCard, setNumberCard] = useState(6);
   const [page, setPage] = useState(1);
-  const length = allRecipes.length;
+  const [first] = listData.map((recipe) => recipe.recipes);
+  const filterRecipe = first?.filter((el) => el.difficulty);
 
   const onResize = useCallback(
     (target: HTMLDivElement) => {
@@ -29,51 +26,27 @@ export const ListArea = ({allRecipes}: ListAreaProps) => {
   );
 
   const cardNumber = useResizeObserver(onResize);
-  const {slice} = useTable(allRecipes, page, numberCard);
-  console.log(numberCard);
 
   return (
-    <Content
-      ref={cardNumber}
-      className={styles.listArea}
-    >
-      <Typography.Title
-        level={3}
-        className={styles.headerText}
-      >
-        Найденные рецепты {length}
-      </Typography.Title>
-      <Flex
-        gap='0.75rem'
-        className={styles.cardWrapper}
-      >
-        {allRecipes &&
-          slice?.map((value) => {
-            return (
-              <CardDish
-                key={value.id}
-                image={value.image}
-                cuisine={value.cuisine}
-                cookTimeMinutes={value.cookTimeMinutes}
-                difficulty={value.difficulty}
-                instructions={value.instructions}
-                mealType={value.mealType}
-                name={value.name}
-              />
-            );
-          })}
-      </Flex>
-      <Footer
-        className={styles.footer}
-        children={
-          <Pagination
-            defaultCurrent={page}
-            defaultPageSize={numberCard}
-            total={length}
-            onChange={(value) => setPage(value)}
-          />
-        }
-      />
-    </Content>
+    <>
+      {listData.map((value, index) => {
+        const length = value.recipes.length;
+        return (
+          <Content
+            key={index}
+            ref={cardNumber}
+            className={styles.listArea}
+          >
+            <ContentArea
+              page={page}
+              sliceData={filterRecipe}
+              setPage={setPage}
+              length={length}
+              numberCard={numberCard}
+            />
+          </Content>
+        );
+      })}
+    </>
   );
 };

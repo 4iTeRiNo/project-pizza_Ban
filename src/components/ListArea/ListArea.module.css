@@ -1,7 +1,8 @@
 .listArea {
   display: flex;
   flex-direction: column;
-  background-color: #dbdbdbad;
+  gap: 0.5rem;
+  background-color: #ffffff80;
   border-radius: var(--border-radius);
 
   .headerText {
@@ -10,7 +11,9 @@
     font-weight: 500;
     font-size: clamp(0.9375rem, 0.8275rem + 0.3521vw, 1.25rem);
     line-height: 120%;
-    padding-left: 1rem;
+    padding: 1rem;
+    background-color: var(--background-color);
+    margin: 0;
     color: rgba(0, 0, 0, 0.85);
   }
   .cardWrapper {
@@ -24,7 +27,8 @@
     display: flex;
     flex: 0 0 auto;
     height: 56px;
-    background-color: #dbdbdbad;
+    background-color: #ffffff80;
+
     justify-content: center;
     align-items: center;
     border-radius: var(--border-radius);

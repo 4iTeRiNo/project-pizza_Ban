@@ -20,7 +20,7 @@ const recipeSlice = createSlice({
   initialState,
   reducers: {},
   selectors: {
-    selectorRecipe: (state) => state.list.find((el) => el.recipes),
+    selectorRecipe: (state) => state.list,
   },
   extraReducers: (builder) => {
     builder
@@ -39,6 +39,6 @@ const recipeSlice = createSlice({
   },
 });
 
-export const {selectorRecipe} = recipeSlice.selectors;
+export const {selectorRecipe} = recipeSlice.getSelectors();
 
 export default recipeSlice.reducer;

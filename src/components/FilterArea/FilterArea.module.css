@@ -3,7 +3,7 @@
   flex: 0 0 auto;
   max-width: 465px;
   padding: 1.5rem;
-  background: #dbdbdbad !important;
+  background-color: var(--background-color);
   border-radius: var(--border-radius);
   color: #000;
 }

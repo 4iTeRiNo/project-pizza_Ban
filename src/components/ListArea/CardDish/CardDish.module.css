@@ -4,6 +4,7 @@
   flex-direction: row;
   width: clamp(375px, 24vw, 452px);
   height: 354px;
+  background-color: var(--background-color);
   border-radius: var(--border-radius);
   border: 1px solid #fdfbfb;
   transition: transform 0.2s ease-in-out;

@@ -6,11 +6,18 @@ import './index.css';
 import store from './store/index.ts';
 
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
+import {Recipe} from './components/ShowRecipe/Recipe.tsx';
+import ErrorPage from './page/error-page.tsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: 'recipe/:id',
+    element: <Recipe />,
   },
 ]);
 

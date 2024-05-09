@@ -1,0 +1,53 @@
+.showRecipe {
+  display: flex;
+  background: #f5f5f5;
+  overflow: hidden;
+  height: 920px;
+  .header {
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    column-gap: 1.5rem;
+    align-items: center;
+    border-radius: var(--border-radius);
+    background-color: var(--background-color);
+  }
+
+  .buttonBack {
+    cursor: pointer;
+    border-radius: 30%;
+    padding: 0.2rem;
+    transition: background-color 0.4s ease-in;
+  }
+
+  .paginationWrapper {
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-radius);
+    background-color: #ffffff80;
+    flex-direction: column;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    row-gap: 1.5rem;
+  }
+
+  .image {
+    display: flex;
+    object-fit: cover;
+    flex: 0 0 auto;
+    background-color: var(--background-color);
+    border-radius: var(--border-radius);
+  }
+}
+
+.buttonBack:active {
+  transform: scale(0.8);
+}
+
+@media (hover: hover) {
+  .buttonBack:hover {
+    background-color: rgb(185, 185, 185);
+    border-radius: 30%;
+    transition: background-color 0.3s ease-in;
+  }
+}

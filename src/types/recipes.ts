@@ -1,9 +1,11 @@
 export type RecipesData = {
   total: number;
-  skip: number;
-  limit: number;
   recipes: Recipes[];
 };
+
+/* export type Recipes = {
+  recipes: Dish[];
+}; */
 
 export type Recipes = {
   id: number;
@@ -12,13 +14,13 @@ export type Recipes = {
   cookTimeMinutes: number;
   cuisine: string;
   difficulty: string;
-  ingredients: Ingredients;
-  instructions: Instructions;
+  ingredients: Ingredients[];
+  instructions: Instructions[];
   userId: number;
   image: string;
   rating: number;
-  tags: Tags;
-  mealType: MealType;
+  tags: Tags[];
+  mealType: MealType[];
   reviewCount: number;
   servings: number;
   prepTimeMinutes: number;
