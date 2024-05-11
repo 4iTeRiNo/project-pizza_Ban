@@ -19,11 +19,14 @@ export const Recipe = () => {
   const tags = recipe?.tags.map((el) => {
     return {el: `#${el}`};
   });
+
   useEffect(() => {
-    if (!allRecipes && id) {
+    // debugger;
+
+    if (id && !allRecipes.find((el) => el.id === +id)) {
       dispatch(fetchRecipeId(id));
     }
-  }, [dispatch, allRecipes]);
+  }, [dispatch, allRecipes, id]);
   const range = allRecipes.length;
   const stepInstructions = recipe?.instructions.map((el) => {
     return {
@@ -44,7 +47,7 @@ export const Recipe = () => {
         >
           <ArrowLeftOutlined
             className={styles.buttonBack}
-            onClick={() => navigate(-1)}
+            onClick={() => navigate(`/`)}
             style={{color: '#000', width: '20px', height: '20px'}}
           />
           <Typography.Title>{recipe?.name}</Typography.Title>
@@ -127,7 +130,10 @@ export const Recipe = () => {
           />
           <Pagination
             range={range}
-            setPage={setPage}
+            setPage={(id) => {
+              setPage(id);
+              navigate(`/recipe/${id}`);
+            }}
             page={page}
           />
         </Col>

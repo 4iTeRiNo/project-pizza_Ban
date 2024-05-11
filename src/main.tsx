@@ -18,6 +18,7 @@ const router = createBrowserRouter([
   {
     path: 'recipe/:id',
     element: <Recipe />,
+    errorElement: <ErrorPage />,
   },
 ]);
 
