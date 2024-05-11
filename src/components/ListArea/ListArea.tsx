@@ -5,14 +5,24 @@ import {useAppSelector} from '../../hooks/dispatchRedux';
 import {ContentArea} from './Content';
 import {Content} from 'antd/es/layout/layout';
 import styles from './ListArea.module.css';
+import {Recipes} from '../../types/recipes';
 
 export const ListArea = () => {
-  const listData = useAppSelector((state) => state.recipeBook.list);
+  const {list: listData, difficulty} = useAppSelector((state) => state.recipeBook);
 
   const [numberCard, setNumberCard] = useState(6);
   const [page, setPage] = useState(1);
   const [first] = listData.map((recipe) => recipe.recipes);
-  const filterRecipe = first?.filter((el) => el.difficulty);
+  let filterRecipe: Recipes[] = [];
+
+  if (difficulty === 'All') {
+    filterRecipe = first?.filter((el) => el.difficulty);
+  } else {
+    difficulty === 'Easy'
+      ? (filterRecipe = first?.filter((el) => el.difficulty === difficulty))
+      : (filterRecipe = first?.filter((el) => el.cuisine === difficulty));
+  }
+  const length = filterRecipe?.length;
 
   const onResize = useCallback(
     (target: HTMLDivElement) => {
@@ -30,7 +40,6 @@ export const ListArea = () => {
   return (
     <>
       {listData.map((value, index) => {
-        const length = value.recipes.length;
         return (
           <Content
             key={index}

@@ -1,11 +1,7 @@
 export type RecipesData = {
-  total: number;
+  // total: number;
   recipes: Recipes[];
 };
-
-/* export type Recipes = {
-  recipes: Dish[];
-}; */
 
 export type Recipes = {
   id: number;
@@ -13,18 +9,23 @@ export type Recipes = {
   caloriesPerServing: number;
   cookTimeMinutes: number;
   cuisine: string;
-  difficulty: string;
-  ingredients: Ingredients[];
-  instructions: Instructions[];
+  difficulty: Difficulty | string;
+  ingredients: Ingredients;
+  instructions: Instructions;
   userId: number;
   image: string;
   rating: number;
-  tags: Tags[];
-  mealType: MealType[];
+  tags: Tags;
+  mealType: MealType;
   reviewCount: number;
   servings: number;
   prepTimeMinutes: number;
 };
+
+// export type Filter = {
+//   name: string;
+//   value: string | string[];
+// };
 
 type Ingredients = Array<string>;
 
@@ -33,3 +34,4 @@ type Instructions = Array<string>;
 type Tags = Array<string>;
 
 type MealType = Array<string>;
+type Difficulty = Array<string>;
