@@ -16,7 +16,7 @@ export const fetchRecipe = createAsyncThunk<Recipes, undefined, {rejectValue: st
   },
 );
 
-export const fetchRecipeId = createAsyncThunk<Recipe, id, {rejectValue: string}>(
+export const fetchRecipeId = createAsyncThunk<Recipe, string, {rejectValue: string}>(
   'recipe/fetchRecipe',
   async function (id, {rejectWithValue}) {
     const response = await fetch(`${API_URL_FETCH_ID}/${id}`);

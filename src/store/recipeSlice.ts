@@ -1,5 +1,5 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
-import {fetchRecipe, fetchRecipeId} from './thunks';
+import {fetchRecipe} from './thunks';
 import {isError} from '../utils/isError';
 import {Recipes} from '../types/recipes';
 // import {Cuisine, Difficulty, mealType} from '../types/searchValue';
@@ -13,7 +13,6 @@ export type recipeState = {
   // filters: Filter;
   difficulty: string;
   cuisine: string;
-  // mealType: string;
 };
 
 const initialState: recipeState = {
@@ -23,7 +22,6 @@ const initialState: recipeState = {
   // filters: ;
   difficulty: 'All',
   cuisine: 'All',
-  // mealType: 'All',
 };
 
 const recipeSlice = createSlice({
@@ -31,7 +29,7 @@ const recipeSlice = createSlice({
   initialState,
   reducers: {},
   selectors: {
-    selectorRecipe: (state) => state.list,
+    selectorAllRecipe: (state) => state.list,
   },
   extraReducers: (builder) => {
     builder
@@ -46,10 +44,10 @@ const recipeSlice = createSlice({
           state.status = 'succeeded';
         }
       })
-      .addCase(fetchRecipeId.fulfilled, (state, action) => {
-        state.list.push(action.payload);
-        state.status = 'succeeded';
-      })
+      // .addCase(fetchRecipeId.fulfilled, (state, action) => {
+      //   state.list.push(action.payload);
+      //   state.status = 'succeeded';
+      // })
       .addCase(filterValueDifficulty, (state, action) => {
         state.difficulty = action.payload.difficulty;
         // state.cuisine = action.payload.cuisine;
@@ -69,6 +67,6 @@ const recipeSlice = createSlice({
   },
 });
 
-export const {selectorRecipe} = recipeSlice.getSelectors();
+export const {selectorAllRecipe} = recipeSlice.getSelectors();
 
 export default recipeSlice.reducer;

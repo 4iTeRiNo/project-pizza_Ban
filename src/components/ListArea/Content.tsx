@@ -16,7 +16,6 @@ interface ContentAreaProps {
 
 export const ContentArea = ({sliceData, length, numberCard, setPage, page}: ContentAreaProps) => {
   const {slice} = useTable(sliceData, page, numberCard);
-  console.log(numberCard, page, length);
 
   return (
     <>

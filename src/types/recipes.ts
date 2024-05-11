@@ -1,17 +1,19 @@
-export type Recipes = Recipe[];
 export type RecipesAPI = {
   recipes: Recipe[];
   total: number;
   limit: number;
   skip: number;
 };
+
+export type Recipes = Recipe[];
+
 export type Recipe = {
   id: number;
   name: string;
   caloriesPerServing: number;
   cookTimeMinutes: number;
   cuisine: string;
-  difficulty: Difficulty | string;
+  difficulty: string;
   ingredients: Ingredients;
   instructions: Instructions;
   userId: number;
@@ -36,4 +38,3 @@ type Instructions = Array<string>;
 type Tags = Array<string>;
 
 type MealType = Array<string>;
-type Difficulty = Array<string>;

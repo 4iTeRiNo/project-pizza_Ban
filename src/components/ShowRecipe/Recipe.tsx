@@ -20,7 +20,7 @@ export const Recipe = () => {
     return {el: `#${el}`};
   });
   useEffect(() => {
-    if (!allRecipes) {
+    if (!allRecipes && id) {
       dispatch(fetchRecipeId(id));
     }
   }, [dispatch, allRecipes]);

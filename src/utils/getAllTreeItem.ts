@@ -9,3 +9,9 @@ export function getAllTreeItems<T>(tree: T): T[] {
   }
   return result;
 }
+
+export function pushItemInArray<T>(Array: T[], value: T): T[] {
+  getAllTreeItems(Array);
+  Array.unshift(value);
+  return Array;
+}
