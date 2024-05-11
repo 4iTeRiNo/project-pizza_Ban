@@ -1,5 +1,5 @@
-import {Recipes} from './recipes';
+import {Recipe} from './recipes';
 
 export type Difficulty = 'All' | 'Easy' | 'Medium' | 'Hard';
-export type Cuisine = Pick<Recipes, 'cuisine'>;
-export type mealType = Pick<Recipes, 'mealType'>;
+export type Cuisine = Pick<Recipe, 'cuisine'>;
+export type mealType = Pick<Recipe, 'mealType'>;

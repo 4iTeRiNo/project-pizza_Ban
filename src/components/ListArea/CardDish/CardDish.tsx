@@ -1,13 +1,13 @@
 import {ClockCircleOutlined} from '@ant-design/icons';
 import {Flex, Image, Rate, Typography} from 'antd';
-import {Recipes} from '../../../types/recipes';
+import {Recipe} from '../../../types/recipes';
 import {getDifficulty} from '../../../utils/getDifficulty';
 import styles from './CardDish.module.css';
 import {Link} from 'react-router-dom';
 
 export interface CardDishProps
   extends Pick<
-    Recipes,
+    Recipe,
     | 'cookTimeMinutes'
     | 'mealType'
     | 'difficulty'

@@ -1,12 +1,13 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
-import {fetchRecipe} from './thunks';
+import {fetchRecipe, fetchRecipeId} from './thunks';
 import {isError} from '../utils/isError';
-import {RecipesData} from '../types/recipes';
+import {Recipes} from '../types/recipes';
 // import {Cuisine, Difficulty, mealType} from '../types/searchValue';
 import {filterValueCuisine, filterValueDifficulty} from './action';
+import {isRecipesType} from '../utils/typeGuards';
 
 export type recipeState = {
-  list: RecipesData[];
+  list: Recipes;
   status: string;
   error: string | null;
   // filters: Filter;
@@ -39,7 +40,14 @@ const recipeSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchRecipe.fulfilled, (state, action) => {
-        state.list = [action.payload];
+        if (isRecipesType(action.payload)) {
+          const {recipes} = action.payload;
+          state.list = recipes;
+          state.status = 'succeeded';
+        }
+      })
+      .addCase(fetchRecipeId.fulfilled, (state, action) => {
+        state.list.push(action.payload);
         state.status = 'succeeded';
       })
       .addCase(filterValueDifficulty, (state, action) => {

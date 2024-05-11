@@ -4,10 +4,10 @@ import styles from './ListArea.module.css';
 
 import {Flex, Pagination, Typography} from 'antd';
 import {CardDish} from './CardDish';
-import {Recipes} from '../../types/recipes';
+import {Recipe} from '../../types/recipes';
 import useTable from '../../hooks/UsePage';
 interface ContentAreaProps {
-  sliceData: Recipes[];
+  sliceData: Recipe[];
   length: number;
   page: number;
   setPage: Dispatch<React.SetStateAction<number>>;
@@ -16,6 +16,7 @@ interface ContentAreaProps {
 
 export const ContentArea = ({sliceData, length, numberCard, setPage, page}: ContentAreaProps) => {
   const {slice} = useTable(sliceData, page, numberCard);
+  console.log(numberCard, page, length);
 
   return (
     <>
@@ -48,7 +49,7 @@ export const ContentArea = ({sliceData, length, numberCard, setPage, page}: Cont
       <Footer className={styles.footer}>
         <Pagination
           defaultCurrent={page}
-          defaultPageSize={numberCard}
+          pageSize={numberCard}
           total={length}
           onChange={(value) => setPage(value)}
         />

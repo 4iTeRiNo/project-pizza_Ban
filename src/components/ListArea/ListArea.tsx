@@ -5,57 +5,56 @@ import {useAppSelector} from '../../hooks/dispatchRedux';
 import {ContentArea} from './Content';
 import {Content} from 'antd/es/layout/layout';
 import styles from './ListArea.module.css';
-import {Recipes} from '../../types/recipes';
+import {Recipe} from '../../types/recipes';
+import {selectorRecipe} from '../../store/recipeSlice';
 
 export const ListArea = () => {
-  const {list: listData, difficulty} = useAppSelector((state) => state.recipeBook);
+  const listData = useAppSelector((state) => selectorRecipe(state.recipeBook));
+  // console.log(list);
 
   const [numberCard, setNumberCard] = useState(6);
   const [page, setPage] = useState(1);
   const [first] = listData.map((recipe) => recipe.recipes);
-  let filterRecipe: Recipes[] = [];
+  let filterRecipe: Recipe[] = [];
+  filterRecipe = first?.filter((el) => el.difficulty);
 
-  if (difficulty === 'All') {
-    filterRecipe = first?.filter((el) => el.difficulty);
-  } else {
-    difficulty === 'Easy'
-      ? (filterRecipe = first?.filter((el) => el.difficulty === difficulty))
-      : (filterRecipe = first?.filter((el) => el.cuisine === difficulty));
-  }
+  // if (difficulty === 'All') {
+  // } else {
+  //   difficulty === 'Easy'
+  //     ? (filterRecipe = first?.filter((el) => el.difficulty === difficulty))
+  //     : (filterRecipe = first?.filter((el) => el.cuisine === difficulty));
+  // }
+
   const length = filterRecipe?.length;
 
-  const onResize = useCallback(
-    (target: HTMLDivElement) => {
-      const width = target.offsetWidth;
+  const onResize = (target: HTMLDivElement) => {
+    const width = target.offsetWidth;
 
-      if (width > SCREEN_XL) return setNumberCard(6);
+    if (width > SCREEN_XL) return setNumberCard(6);
 
-      return width > SCREEN_MD ? setNumberCard(4) : setNumberCard(2);
-    },
-    [numberCard],
-  );
+    return width > SCREEN_MD ? setNumberCard(4) : setNumberCard(2);
+  };
+
+  console.log(numberCard);
 
   const cardNumber = useResizeObserver(onResize);
 
   return (
     <>
-      {listData.map((value, index) => {
-        return (
-          <Content
-            key={index}
-            ref={cardNumber}
-            className={styles.listArea}
-          >
-            <ContentArea
-              page={page}
-              sliceData={filterRecipe}
-              setPage={setPage}
-              length={length}
-              numberCard={numberCard}
-            />
-          </Content>
-        );
-      })}
+      return (
+      <Content
+        ref={cardNumber}
+        className={styles.listArea}
+      >
+        <ContentArea
+          page={page}
+          sliceData={filterRecipe}
+          setPage={setPage}
+          length={length}
+          numberCard={numberCard}
+        />
+      </Content>
+      );
     </>
   );
 };

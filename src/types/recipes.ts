@@ -1,9 +1,11 @@
-export type RecipesData = {
-  // total: number;
-  recipes: Recipes[];
+export type Recipes = Recipe[];
+export type RecipesAPI = {
+  recipes: Recipe[];
+  total: number;
+  limit: number;
+  skip: number;
 };
-
-export type Recipes = {
+export type Recipe = {
   id: number;
   name: string;
   caloriesPerServing: number;

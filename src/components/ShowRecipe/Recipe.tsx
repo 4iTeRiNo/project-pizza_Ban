@@ -3,27 +3,34 @@ import styles from './Recipe.module.css';
 import ArrowLeftOutlined from '@ant-design/icons/lib/icons/ArrowLeftOutlined';
 import Pagination from './Pagination/Pagination';
 import {useNavigate, useParams} from 'react-router-dom';
-import {useAppSelector} from '../../hooks/dispatchRedux';
-import {useState} from 'react';
+import {useAppDispatch, useAppSelector} from '../../hooks/dispatchRedux';
+import {useEffect, useState} from 'react';
+import {fetchRecipeId} from '../../store/thunks';
 
 export const Recipe = () => {
   const {id} = useParams();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [allRecipes] = useAppSelector((state) => state.recipeBook.list);
+  const allRecipes = useAppSelector((state) => state.recipeBook.list);
   const [page, setPage] = useState(Number(id));
-  const recipeId = allRecipes?.recipes[page - 1];
 
-  const tags = recipeId?.tags.map((el) => {
+  const recipe = allRecipes.find((elem) => elem.id === page);
+
+  const tags = recipe?.tags.map((el) => {
     return {el: `#${el}`};
   });
-
-  const range = allRecipes?.recipes.length;
-  const stepInstructions = recipeId?.instructions.map((el) => {
+  useEffect(() => {
+    if (!allRecipes) {
+      dispatch(fetchRecipeId(id));
+    }
+  }, [dispatch, allRecipes]);
+  const range = allRecipes.length;
+  const stepInstructions = recipe?.instructions.map((el) => {
     return {
       children: el,
     };
   });
-
+  // debugger;
   return (
     <Flex
       className={styles.showRecipe}
@@ -40,7 +47,7 @@ export const Recipe = () => {
             onClick={() => navigate(-1)}
             style={{color: '#000', width: '20px', height: '20px'}}
           />
-          <Typography.Title>{recipeId?.name}</Typography.Title>
+          <Typography.Title>{recipe?.name}</Typography.Title>
         </Col>
       </Row>
       <Row
@@ -57,7 +64,7 @@ export const Recipe = () => {
               title='Кухня'
               size='small'
             >
-              <p>{recipeId?.cuisine}</p>
+              <p>{recipe?.cuisine}</p>
             </Card>
             <Card
               title='Теги'
@@ -69,20 +76,20 @@ export const Recipe = () => {
               title='Каллорийность'
               size='small'
             >
-              <p>{recipeId?.caloriesPerServing}</p>
+              <p>{recipe?.caloriesPerServing}</p>
             </Card>
             <Card
               title='Количесво порций'
               size='small'
             >
-              <p>{recipeId?.servings}</p>
+              <p>{recipe?.servings}</p>
             </Card>
             <Card
               title='Описание'
               size='small'
               style={{height: '100%'}}
             >
-              <p>{recipeId?.instructions}</p>
+              <p>{recipe?.instructions}</p>
             </Card>
           </Flex>
         </Col>
@@ -96,7 +103,7 @@ export const Recipe = () => {
               title='Общее время приготовления'
               size='small'
             >
-              <p>{recipeId?.cookTimeMinutes}</p>
+              <p>{recipe?.cookTimeMinutes}</p>
             </Card>
             <Card
               title='Инструкции по приготовлению'
@@ -115,7 +122,7 @@ export const Recipe = () => {
           <Image
             preview={false}
             width={760}
-            src={recipeId?.image}
+            src={recipe?.image}
             className={styles.image}
           />
           <Pagination
