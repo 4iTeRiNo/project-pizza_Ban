@@ -50,21 +50,17 @@ export const ListArea = () => {
   const cardNumber = useResizeObserver(onResize);
 
   return (
-    <>
-      return (
-      <Content
-        ref={cardNumber}
-        className={styles.listArea}
-      >
-        <ContentArea
-          page={page}
-          sliceData={filterRecipe}
-          setPage={setPage}
-          length={length}
-          numberCard={numberCard}
-        />
-      </Content>
-      );
-    </>
+    <Content
+      ref={cardNumber}
+      className={styles.listArea}
+    >
+      <ContentArea
+        page={page}
+        sliceData={filterRecipe}
+        setPage={setPage}
+        length={length}
+        numberCard={numberCard}
+      />
+    </Content>
   );
 };

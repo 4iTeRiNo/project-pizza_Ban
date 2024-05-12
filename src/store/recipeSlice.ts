@@ -2,7 +2,7 @@ import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 import {fetchRecipe, fetchRecipeId} from './thunks';
 import {isError} from '../utils/isError';
 import {Filter, Recipes} from '../types/recipes';
-import {setFilter} from './action';
+import {resetFilter, setFilter} from './action';
 import {isRecipesType} from '../utils/typeGuards';
 
 export type recipeState = {
@@ -59,7 +59,6 @@ const recipeSlice = createSlice({
       })
       .addCase(setFilter, (state, action) => {
         const {name, value} = action.payload;
-
         state.filters.map((values) => {
           switch (values.name) {
             case name:
@@ -68,6 +67,9 @@ const recipeSlice = createSlice({
               return null;
           }
         });
+      })
+      .addCase(resetFilter, (state) => {
+        state.filters = initialState.filters;
       })
       .addMatcher(isError, (state, action: PayloadAction<string>) => {
         state.error = action.payload;
