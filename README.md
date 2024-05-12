@@ -2,6 +2,7 @@
 
 - Создал необхолимый функционал;
 - Приложение на 100% написано на Typescript;
+- Разревнутая версия [тут](https://project-pizza-ban.vercel.app/);
 
 API https://dummyjson.com/docs/recipes;
 
