@@ -11,4 +11,4 @@ https://www.figma.com/file/9bcQdalyTZBI9wWB8a7sVq/%D0%9C%D0%B0%D0%BA%D0%B5%D1%82
 
 Установить зависимости `yarn`;
 
-Для запуска проекта `yarn run dev`;
+Для запуска проекта `yarn start`;
