@@ -18,25 +18,11 @@ export const ListArea = () => {
 
   let filterRecipe: Recipe[] = [];
 
-  filterRecipe = listData.filter((el) =>
-    Difficulty === 'All' && Cuisine === 'All' && MealType === 'All'
-      ? el
-      : Cuisine === 'All' && MealType === 'All'
-      ? el.difficulty === Difficulty
-      : Cuisine === 'All' && Difficulty === 'All'
-      ? el.mealType.some((value) => value === MealType)
-      : Difficulty === 'All' && MealType === 'All'
-      ? el.cuisine === Cuisine
-      : Cuisine === 'All'
-      ? el.difficulty === Difficulty && el.mealType.some((value) => value === MealType)
-      : MealType === 'All'
-      ? el.difficulty === Difficulty && el.cuisine === Cuisine
-      : Difficulty === 'All'
-      ? el.cuisine === Cuisine && el.mealType.some((value) => value === MealType)
-      : el.difficulty === Difficulty &&
-        el.cuisine === Cuisine &&
-        el.mealType.some((value) => value === MealType),
-  );
+  filterRecipe = listData
+    .filter((el) => (Difficulty === 'All' ? true : el.difficulty === Difficulty))
+    .filter((el) => (Cuisine === 'All' ? true : el.cuisine === Cuisine))
+    .filter((el) => (MealType === 'All' ? true : el.mealType.some((value) => value === MealType)));
+
   const length = filterRecipe?.length;
 
   const onResize = (target: HTMLDivElement) => {
