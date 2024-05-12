@@ -1,10 +1,15 @@
 .flexWrapper {
-  padding: 0 1.5rem 0;
+  /* padding: 0 1.5rem 0; */
   gap: 1.0625rem;
 }
 
+.inputWrapper {
+  width: 100%;
+  gap: 0.5rem;
+}
+
 .text {
-  width: 7.8125rem;
+  width: 8rem;
   text-wrap: wrap;
   max-inline-size: 140px;
   font-weight: 700;

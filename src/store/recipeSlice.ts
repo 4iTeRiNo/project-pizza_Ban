@@ -1,27 +1,35 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 import {fetchRecipe, fetchRecipeId} from './thunks';
 import {isError} from '../utils/isError';
-import {Recipes} from '../types/recipes';
-// import {Cuisine, Difficulty, mealType} from '../types/searchValue';
-import {filterValueCuisine, filterValueDifficulty} from './action';
+import {Filter, Recipes} from '../types/recipes';
+import {setFilter} from './action';
 import {isRecipesType} from '../utils/typeGuards';
 
 export type recipeState = {
   list: Recipes;
   status: string;
   error: string | null;
-  // filters: Filter;
-  difficulty: string;
-  cuisine: string;
+  filters: Filter[];
 };
 
 const initialState: recipeState = {
   list: [],
   status: 'idle',
   error: null,
-  // filters: ;
-  difficulty: 'All',
-  cuisine: 'All',
+  filters: [
+    {
+      name: 'cuisine',
+      value: 'All',
+    },
+    {
+      name: 'mealType',
+      value: 'All',
+    },
+    {
+      name: 'difficulty',
+      value: 'All',
+    },
+  ],
 };
 
 const recipeSlice = createSlice({
@@ -30,6 +38,7 @@ const recipeSlice = createSlice({
   reducers: {},
   selectors: {
     selectorAllRecipe: (state) => state.list,
+    selectorAllFilters: (state) => state.filters,
   },
   extraReducers: (builder) => {
     builder
@@ -48,17 +57,17 @@ const recipeSlice = createSlice({
         state.list = [action.payload];
         state.status = 'succeeded';
       })
-      .addCase(filterValueDifficulty, (state, action) => {
-        state.difficulty = action.payload.difficulty;
-        // state.cuisine = action.payload.cuisine;
-        // state.mealType = action.payload.mealType;
-      })
-      .addCase(filterValueCuisine, (state, action) => {
-        // state.difficulty = action.payload.difficulty;
-        state.cuisine = action.payload.cuisine;
+      .addCase(setFilter, (state, action) => {
+        const {name, value} = action.payload;
 
-        ('');
-        // state.mealType = action.payload.mealType;
+        state.filters.map((values) => {
+          switch (values.name) {
+            case name:
+              return (values.name = name), (values.value = value);
+            default:
+              return null;
+          }
+        });
       })
       .addMatcher(isError, (state, action: PayloadAction<string>) => {
         state.error = action.payload;
@@ -67,6 +76,6 @@ const recipeSlice = createSlice({
   },
 });
 
-export const {selectorAllRecipe} = recipeSlice.getSelectors();
+export const {selectorAllRecipe, selectorAllFilters} = recipeSlice.getSelectors();
 
 export default recipeSlice.reducer;

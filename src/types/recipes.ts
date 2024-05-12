@@ -26,10 +26,10 @@ export type Recipe = {
   prepTimeMinutes: number;
 };
 
-// export type Filter = {
-//   name: string;
-//   value: string | string[];
-// };
+export type Filter = {
+  name: string;
+  value: string;
+};
 
 type Ingredients = Array<string>;
 

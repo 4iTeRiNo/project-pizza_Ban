@@ -1,9 +1,4 @@
 import {createAction} from '@reduxjs/toolkit';
+import {Filter} from '../types/recipes';
 
-export const filterValueDifficulty = createAction<{
-  difficulty: string;
-}>('recipeSlice/filterValueDifficulty');
-
-export const filterValueCuisine = createAction<{
-  cuisine: string;
-}>('recipeSlice/filterValueCuisine');
+export const setFilter = createAction<Filter>('recipeSlice/setFilter');
